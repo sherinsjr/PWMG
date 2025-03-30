@@ -171,7 +171,7 @@ const createUser = async (req, res) => {
 // Get all users - Admin
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().populate('institutionDetails');
+    const users = await User.find()
 
     res.status(200).json({
       status: 'success',
