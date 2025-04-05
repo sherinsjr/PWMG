@@ -6,6 +6,7 @@ import Planner from './planner';
 import Entries from './entries';
 import Meals from './meals';
 import WorkoutLibrary from './workoutlibrary';
+import UserList from './users';
 
 export {
   Login,
@@ -16,4 +17,5 @@ export {
   Entries,
   Meals,
   WorkoutLibrary,
+  UserList,
 };

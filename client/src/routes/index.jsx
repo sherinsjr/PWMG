@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiUsers } from 'react-icons/fi';
 import { RxDashboard } from 'react-icons/rx';
 import { Navigate } from 'react-router-dom';
 import { AuthLayout, DesktopLayout } from '../views/layouts';
@@ -12,6 +12,7 @@ import {
   Planner,
   Settings,
   SignUp,
+  UserList,
   WorkoutLibrary,
 } from '../pages';
 import { RequireAuth } from '../contexts/authContext';
@@ -72,6 +73,7 @@ const routes = [
         path: 'user/workoutlibrary/workout/update/:workoutId',
         element: <UpdateWorkout />,
       },
+      { path: 'user/users', element: <UserList /> },
     ],
   },
 ];
@@ -83,6 +85,13 @@ export const sidebarRoutes = [
     path: '/user/dashboard',
     protected: false,
     icon: <RxDashboard />,
+  },
+  {
+    routeName: 'Users',
+    element: UserList,
+    path: '/user/users',
+    protected: false,
+    icon: <FiUsers />,
   },
   {
     routeName: 'Settings',
