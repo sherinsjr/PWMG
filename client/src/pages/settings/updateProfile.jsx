@@ -1,65 +1,48 @@
 import { Button, chakra, Flex, Text, useToast } from '@chakra-ui/react';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { updateUser } from '../../apis/userApis';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import FormInput from '../../components/formElements/formInput';
+import axiosInstance from '../../config/axios';
 
-const UpdateUser = ({ onClose, userData }) => {
-  const [btnLoading, setBtnLoading] = useState(false);
-  const [firstName, setFirstName] = useState(userData?.firstName || '');
-  const [lastName, setLastName] = useState(userData?.lastName || '');
-  const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber || '');
+const UpdateProfile = ({ onClose, data }) => {
+  const [firstName, setFirstName] = useState(data?.firstName || '');
+  const [lastName, setLastName] = useState(data?.lastName || '');
+  const [phoneNumber, setPhoneNumber] = useState(data?.phoneNumber || '');
+  const [loading, setloading] = useState(false);
 
   const toast = useToast();
-  const queryClient = useQueryClient();
-
-  const mutatedData = useMutation({
-    mutationFn: (id, updatedUser) => {
-      return updateUser(id, updatedUser);
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
-    onError: (err) => {
-      console.log(err.message);
-    },
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setBtnLoading(true);
+      setloading(true);
 
-      const updatedData = {
-        firstName: firstName || data?.firstName,
-        lastName: lastName || data?.lastName,
-        phoneNumber: phoneNumber || data?.phoneNumber,
+      const userData = {
+        firstName,
+        lastName,
+        phoneNumber,
       };
-      const userId = userData?._id;
 
-      const { data, status, statusText } = await mutatedData.mutateAsync({
-        id: userId,
-        updatedData,
-      });
+      const response = await axiosInstance.put(`user/update/me`, userData);
 
-      if (status === 200 && statusText === 'OK') {
+      if (response.status === 200) {
         toast({
           title: 'success',
-          description: data?.data?.message || 'User updated successfully',
+          description: response?.data?.message || 'Profile successfully',
           status: 'success',
           position: 'top',
           duration: 1500,
           isClosable: true,
         });
-        setBtnLoading(false);
+        setloading(false);
         onClose();
       }
     } catch (error) {
-      console.log(error);
-
-      setBtnLoading(false);
+      setloading(false);
       toast({
         title: 'error',
-        description: error?.response?.data?.message || 'Failed to update user',
+        description:
+          error?.response?.data?.message || 'Failed to update profile',
         status: 'error',
         position: 'top',
         duration: 1500,
@@ -79,7 +62,7 @@ const UpdateUser = ({ onClose, userData }) => {
       p='5'
     >
       <Text color='brand.mainTeal' fontSize='1.5rem' fontWeight='semibold'>
-        Update User
+        Update Profile
       </Text>
       <Flex
         as={chakra.form}
@@ -89,31 +72,49 @@ const UpdateUser = ({ onClose, userData }) => {
         onSubmit={handleSubmit}
       >
         <FormInput
+          label='Email'
+          id='email'
+          type='text'
+          isRequired={true}
+          labelColor='brand.white'
+          isDisabled
+          value={data?.email}
+        />
+        <FormInput
           label='First Name'
           id='firstName'
           type='text'
           isRequired={true}
+          labelColor='brand.white'
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          labelColor='brand.white'
         />
         <FormInput
           label='Last Name'
           id='lastName'
           type='text'
           isRequired={true}
+          labelColor='brand.white'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          labelColor='brand.white'
         />
         <FormInput
           label='Phone Number'
           id='phoneNumber'
           type='text'
           isRequired={true}
+          labelColor='brand.white'
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <FormInput
+          label='Designation'
+          id='designation'
+          type='text'
+          isRequired={true}
           labelColor='brand.white'
+          value={data?.designation}
+          isDisabled
         />
         <Flex w='full' justify='space-between'>
           <Button
@@ -133,14 +134,14 @@ const UpdateUser = ({ onClose, userData }) => {
           <Button
             w='48%'
             px={{ base: '4', md: '6' }}
-            bg='brand.btnBg'
+            bg='brand.mainTeal'
             color='brand.white'
             type='submit'
             mt='4'
             _hover={{ bg: 'green.400' }}
             borderRadius='0.7rem'
             size='sm'
-            isLoading={btnLoading}
+            isLoading={loading}
             loadingText='Updating'
             spinnerPlacement='start'
           >
@@ -152,8 +153,8 @@ const UpdateUser = ({ onClose, userData }) => {
   );
 };
 
-UpdateUser.propTypes = {
-  userData: PropTypes.object,
+UpdateProfile.propTypes = {
+  data: PropTypes.object,
   onClose: PropTypes.func.isRequired,
 };
-export default UpdateUser;
+export default UpdateProfile;

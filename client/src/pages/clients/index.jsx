@@ -5,42 +5,64 @@ import {
   Spinner,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
-import DeleteUser from './deleteUser';
-import UpdateUser from './updateUser';
-import { getMyUsers } from '../../apis/userApis';
-import { useUserList } from '../../store/userStore';
+import { FaEye } from 'react-icons/fa';
 import MainModal from '../../components/modal';
 import TableComponent from '../../components/table/mainTable';
-import { useQuery } from '@tanstack/react-query';
-const UserList = () => {
-  const { users, setUsers } = useUserList();
+import { getMyClients } from '../../apis/clientApis';
+import UpdateClient from './updateClient';
+import DeleteClient from './deleteClient';
+import { Link } from 'react-router-dom';
+
+const ClientList = () => {
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState();
   const [selectedUser, setSelectedUser] = useState({});
-  const { isOpen, onOpen, onClose } = useDisclosure(); // delete modal
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [clients, setClients] = useState([]);
+
   const {
     isOpen: isModalOpen,
     onOpen: onModalOpen,
     onClose: onModalClose,
-  } = useDisclosure(); // update modal
+  } = useDisclosure();
 
-  useQuery({
-    queryKey: ['users'],
-    queryFn: async () => {
-      try {
-        const response = await getMyUsers();
-        if (response.status === 200 && response.statusText === 'OK') {
-          setUsers(response?.data?.data);
-          setLoading(false);
-        }
-        return response?.data?.data;
-      } catch (error) {
-        console.log(error.message);
+  useEffect(() => {
+    getClients();
+  }, []);
+
+  const getClients = async () => {
+    try {
+      const response = await getMyClients();
+
+      if (response.status === 200 && response.statusText === 'OK') {
+        setClients(response?.data?.clients);
+        console.log(response?.data?.clients);
+        setLoading(false);
       }
-    },
-  });
+      return response?.data?.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // useQuery({
+  //   queryKey: ['clients'],
+  //   queryFn: async () => {
+  //     try {
+  //       const response = await getMyClients();
+  //       if (response.status === 200 && response.statusText === 'OK') {
+  //         setClients(response?.data?.clients);
+  //         console.log(response?.data?.clients);
+  //         setLoading(false);
+  //       }
+  //       return response?.data?.data;
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   },
+  // });
 
   const columns = useMemo(
     () => [
@@ -84,6 +106,16 @@ const UserList = () => {
             >
               <MdDelete />
             </Button>
+            <Button
+              as={Link}
+              to={`/user/clients/update/${cell?._id}`}
+              bg='transparent'
+              color='brand.white'
+              fontSize='1.2rem'
+              _hover={{ bg: 'transparent' }}
+            >
+              <FaEye />
+            </Button>
           </Flex>
         ),
       },
@@ -92,7 +124,7 @@ const UserList = () => {
   );
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>User List</Heading>
+      <Heading>Client List</Heading>
       <Flex
         w='full'
         h='full'
@@ -114,9 +146,9 @@ const UserList = () => {
           ) : (
             <TableComponent
               columns={columns}
-              data={users}
+              data={clients}
               buttonName='Add User'
-              buttonLink='/user/users/create'
+              buttonLink='/user/clients/create'
               isButton={true}
               isPagination={true}
             />
@@ -124,17 +156,17 @@ const UserList = () => {
         </Flex>
       </Flex>
       <MainModal isOpen={isOpen} onClose={onClose}>
-        <DeleteUser onClose={onClose} id={deleteId} />
+        <DeleteClient onClose={onClose} id={deleteId} />
       </MainModal>
       <MainModal
         isOpen={isModalOpen}
         onClose={onModalClose}
         bgColor='brand.dashboardBg'
       >
-        <UpdateUser onClose={onModalClose} userData={selectedUser} />
+        <UpdateClient onClose={onModalClose} userData={selectedUser} />
       </MainModal>
     </Flex>
   );
 };
 
-export default UserList;
+export default ClientList;

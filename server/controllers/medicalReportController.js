@@ -18,7 +18,12 @@ const createReport = async (req, res) => {
     bufferStream.push(null);
 
     const myCloud = cloudinary.uploader.upload_stream(
-      { folder: 'MedicalReport', width: 150, crop: 'scale' },
+      {
+        folder: 'MedicalReport',
+        use_filename: true,
+        resource_type: 'auto',
+        flags: 'attachment', // 👈 This makes the uploaded file downloadable by default
+      },
       async (error, result) => {
         if (error) {
           return res.status(500).json({
@@ -30,7 +35,10 @@ const createReport = async (req, res) => {
 
         const report = await MedicalReport.create({
           reportName,
-          report: { public_id: result.public_id, url: result.secure_url },
+          report: {
+            public_id: result.public_id,
+            url: `https://res.cloudinary.com/ddnmv6tkn/image/upload/fl_attachment/${result.public_id}`,
+          },
           creatorId: _id,
         });
 

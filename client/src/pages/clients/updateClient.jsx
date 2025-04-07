@@ -1,11 +1,11 @@
 import { Button, chakra, Flex, Text, useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { updateUser } from '../../apis/userApis';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import FormInput from '../../components/formElements/formInput';
+import { updateClient } from '../../apis/clientApis';
 
-const UpdateUser = ({ onClose, userData }) => {
+const UpdateClient = ({ onClose, userData }) => {
   const [btnLoading, setBtnLoading] = useState(false);
   const [firstName, setFirstName] = useState(userData?.firstName || '');
   const [lastName, setLastName] = useState(userData?.lastName || '');
@@ -16,9 +16,9 @@ const UpdateUser = ({ onClose, userData }) => {
 
   const mutatedData = useMutation({
     mutationFn: (id, updatedUser) => {
-      return updateUser(id, updatedUser);
+      return updateClient(id, updatedUser);
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['clients'] }),
     onError: (err) => {
       console.log(err.message);
     },
@@ -152,8 +152,8 @@ const UpdateUser = ({ onClose, userData }) => {
   );
 };
 
-UpdateUser.propTypes = {
+UpdateClient.propTypes = {
   userData: PropTypes.object,
   onClose: PropTypes.func.isRequired,
 };
-export default UpdateUser;
+export default UpdateClient;

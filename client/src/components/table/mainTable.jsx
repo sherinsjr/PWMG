@@ -60,7 +60,7 @@ const GlobalSearch = ({
       w={{ base: '10rem', md: '16rem', lg: '20rem' }}
       h={{ base: '2.1875rem', lg: '2.4rem' }}
     >
-      <InputGroup color='brand.white'>
+      <InputGroup color='brand.btnBg'>
         <InputLeftElement ml={1} height='full' size='1.25rem'>
           <AiOutlineSearch />
         </InputLeftElement>
@@ -69,7 +69,7 @@ const GlobalSearch = ({
           placeholder='Search...'
           color='brand.white'
           border='2px solid'
-          borderColor='brand.mainTeal'
+          borderColor='brand.btnBg'
           bg='transparent'
           value={value || ''}
           onChange={handleInputChange}
@@ -181,7 +181,7 @@ const TableComponent = ({
           {isButton && (
             <Button
               as={Link}
-              bg='brand.mainTeal'
+              bg='brand.btnBg'
               display='flex'
               color='brand.white'
               gap='2'

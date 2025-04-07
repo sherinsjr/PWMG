@@ -108,7 +108,7 @@ const login = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { firstName, lastName, email, phoneNumber } = req.body;
+    const { firstName, lastName, email, phoneNumber, role } = req.body;
     const id = req.user._id;
     const creatorId = id;
     if (!firstName || !email || !phoneNumber) {
@@ -136,6 +136,7 @@ const createUser = async (req, res) => {
       password: hashedPassword,
       phoneNumber,
       creatorId,
+      role,
     });
 
     if (user) {
@@ -203,6 +204,35 @@ const getMyUsers = async (req, res) => {
     console.log(error.message);
 
     res.status(400).json({
+      status: 'error',
+      message: 'Something went wrong while fetching users',
+    });
+  }
+};
+
+// Get User by Role - Admin
+const getUsersByRole = async (req, res) => {
+  try {
+    const { role } = req.query;
+
+    if (!role) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Role parameter is required',
+      });
+    }
+
+    const users = await User.find({ role });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Users fetched successfully',
+      data: users,
+    });
+  } catch (error) {
+    console.error(error.message);
+
+    res.status(500).json({
       status: 'error',
       message: 'Something went wrong while fetching users',
     });
@@ -433,6 +463,7 @@ export const userController = {
   createUser,
   getAllUsers,
   getMyUsers,
+  getUsersByRole,
   deleteUser,
   forgotPassword,
   verifyOtp,

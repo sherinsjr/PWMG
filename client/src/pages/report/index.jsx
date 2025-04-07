@@ -2,23 +2,23 @@ import {
   Button,
   Flex,
   Heading,
+  Link,
   Spinner,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
-import DeleteUser from './deleteUser';
-import UpdateUser from './updateUser';
-import { getMyUsers } from '../../apis/userApis';
-import { useUserList } from '../../store/userStore';
 import MainModal from '../../components/modal';
 import TableComponent from '../../components/table/mainTable';
 import { useQuery } from '@tanstack/react-query';
-const UserList = () => {
-  const { users, setUsers } = useUserList();
+import axiosInstance from '../../config/axios';
+import UpdateReport from './updateReport';
+import DeleteReport from './deleteReport';
+const Report = () => {
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState();
   const [selectedUser, setSelectedUser] = useState({});
+  const [reports, setReports] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure(); // delete modal
   const {
     isOpen: isModalOpen,
@@ -27,17 +27,21 @@ const UserList = () => {
   } = useDisclosure(); // update modal
 
   useQuery({
-    queryKey: ['users'],
+    queryKey: ['report'],
     queryFn: async () => {
       try {
-        const response = await getMyUsers();
-        if (response.status === 200 && response.statusText === 'OK') {
-          setUsers(response?.data?.data);
+        const { data, status, statusText } =
+          await axiosInstance.get(`/report/all`);
+        if (status === 200 && statusText === 'OK') {
+          setReports(data?.reports);
+          console.log(data);
+
           setLoading(false);
         }
-        return response?.data?.data;
+        return data?.data;
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     },
   });
@@ -45,16 +49,28 @@ const UserList = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
-        accessor: 'firstName',
+        Header: 'Report',
+        accessor: 'reportName',
       },
       {
-        Header: 'Email',
-        accessor: 'email',
-      },
-      {
-        Header: 'Phone Number',
-        accessor: 'phoneNumber',
+        Header: 'Link',
+        accessor: (cell) => {
+          const originalUrl = cell?.report?.url || '';
+          const downloadUrl = originalUrl.includes('/upload/')
+            ? originalUrl.replace('/upload/', '/upload/fl_attachment/')
+            : originalUrl;
+
+          return (
+            <Link
+              href={downloadUrl}
+              isExternal
+              color='blue.600'
+              fontWeight='medium'
+            >
+              Download
+            </Link>
+          );
+        },
       },
       {
         Header: 'Actions',
@@ -114,9 +130,9 @@ const UserList = () => {
           ) : (
             <TableComponent
               columns={columns}
-              data={users}
+              data={reports}
               buttonName='Add User'
-              buttonLink='/user/users/create'
+              buttonLink='/user/report/create'
               isButton={true}
               isPagination={true}
             />
@@ -124,17 +140,17 @@ const UserList = () => {
         </Flex>
       </Flex>
       <MainModal isOpen={isOpen} onClose={onClose}>
-        <DeleteUser onClose={onClose} id={deleteId} />
+        <DeleteReport onClose={onClose} id={deleteId} />
       </MainModal>
       <MainModal
         isOpen={isModalOpen}
         onClose={onModalClose}
         bgColor='brand.dashboardBg'
       >
-        <UpdateUser onClose={onModalClose} userData={selectedUser} />
+        <UpdateReport onClose={onModalClose} userData={selectedUser} />
       </MainModal>
     </Flex>
   );
 };
 
-export default UserList;
+export default Report;

@@ -22,7 +22,6 @@ function DesktopSidebar() {
   const auth = useAuth();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { user } = useUserData();
-  console.log(user);
 
   const userName = `${user?.firstName} ${user?.lastName}`;
 

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteUser } from '../../apis/userApis';
 
-const DeleteUser = ({ onClose, id }) => {
+const DeleteClient = ({ onClose, id }) => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
@@ -103,9 +103,9 @@ const DeleteUser = ({ onClose, id }) => {
   );
 };
 
-DeleteUser.propTypes = {
+DeleteClient.propTypes = {
   id: PropTypes.any,
   onClose: PropTypes.func.isRequired,
 };
 
-export default DeleteUser;
+export default DeleteClient;

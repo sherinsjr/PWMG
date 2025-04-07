@@ -1,19 +1,30 @@
 import { Flex } from '@chakra-ui/react';
 import { FiSettings, FiUsers } from 'react-icons/fi';
 import { RxDashboard } from 'react-icons/rx';
+import { TbReportAnalytics } from 'react-icons/tb';
+import { CiCalendarDate } from "react-icons/ci";
 import { Navigate } from 'react-router-dom';
 import { AuthLayout, DesktopLayout } from '../views/layouts';
 import { Suspense } from 'react';
 import {
+  ClientList,
+  CreateClient,
+  CreateReport,
+  CreateUser,
+  CreateWorkoutPlanner,
   Dashboard,
   Entries,
   Login,
   Meals,
   Planner,
+  Report,
   Settings,
   SignUp,
+  UpdateClientDetails,
   UserList,
   WorkoutLibrary,
+  WorkoutPlansPage,
+  WorkoutPlanViewPage,
 } from '../pages';
 import { RequireAuth } from '../contexts/authContext';
 import WorkoutDetailsPage from '../pages/workoutlibrary/workoutDetailsPage';
@@ -74,6 +85,19 @@ const routes = [
         element: <UpdateWorkout />,
       },
       { path: 'user/users', element: <UserList /> },
+      { path: 'user/users/create', element: <CreateUser /> },
+      { path: 'user/clients', element: <ClientList /> },
+      { path: 'user/clients/create', element: <CreateClient /> },
+      {
+        path: 'user/clients/update/:clientId',
+        element: <UpdateClientDetails />,
+      },
+      { path: 'user/report', element: <Report /> },
+      { path: 'user/report/create', element: <CreateReport /> },
+      { path: 'user/settings', element: <Settings /> },
+      { path: 'user/workout-plan', element: <WorkoutPlansPage /> },
+      { path: 'user/workout-plan/create', element: <CreateWorkoutPlanner /> },
+      { path: 'user/workout-plan/view/:id', element: <WorkoutPlanViewPage /> },
     ],
   },
 ];
@@ -92,6 +116,27 @@ export const sidebarRoutes = [
     path: '/user/users',
     protected: false,
     icon: <FiUsers />,
+  },
+  {
+    routeName: 'Clients',
+    element: ClientList,
+    path: '/user/clients',
+    protected: false,
+    icon: <FiUsers />,
+  },
+  {
+    routeName: 'Report',
+    element: Report,
+    path: '/user/report',
+    protected: false,
+    icon: <TbReportAnalytics />,
+  },
+  {
+    routeName: 'Plan',
+    element: WorkoutPlansPage,
+    path: '/user/workout-plan',
+    protected: false,
+    icon: <CiCalendarDate />,
   },
   {
     routeName: 'Settings',

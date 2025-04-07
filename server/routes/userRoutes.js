@@ -10,6 +10,7 @@ userRoutes.route('/login').post(userController.login);
 userRoutes.route('/create').post(authenticate.user, userController.createUser);
 userRoutes.route('/all').get(userController.getAllUsers);
 userRoutes.route('/myUsers').get(authenticate.user, userController.getMyUsers);
+userRoutes.route('/role').get(authenticate.user, userController.getUsersByRole);
 userRoutes
   .route('/delete/:id')
   .delete(authenticate.user, userController.deleteUser);

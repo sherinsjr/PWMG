@@ -2,9 +2,9 @@ import { Button, Flex, Text, useToast } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteUser } from '../../apis/userApis';
+import { deleteReport } from '../../apis/reportApis';
 
-const DeleteUser = ({ onClose, id }) => {
+const DeleteReport = ({ onClose, id }) => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
@@ -12,9 +12,9 @@ const DeleteUser = ({ onClose, id }) => {
 
   const mutatedData = useMutation({
     mutationFn: (id) => {
-      return deleteUser(id);
+      return deleteReport(id);
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['report'] }),
     onError: (err) => {
       console.log(err.message);
     },
@@ -28,7 +28,7 @@ const DeleteUser = ({ onClose, id }) => {
       if (status === 200 && statusText === 'OK') {
         toast({
           title: 'success',
-          description: data?.data?.message || 'User Deleted successfully',
+          description: data?.data?.message || 'Report Deleted successfully',
           status: 'success',
           position: 'top',
           duration: 1500,
@@ -44,7 +44,8 @@ const DeleteUser = ({ onClose, id }) => {
 
       toast({
         title: 'error',
-        description: error?.response?.data?.message || 'Failed to delete User',
+        description:
+          error?.response?.data?.message || 'Failed to delete Report',
         status: 'error',
         position: 'top',
         duration: 1500,
@@ -103,9 +104,9 @@ const DeleteUser = ({ onClose, id }) => {
   );
 };
 
-DeleteUser.propTypes = {
+DeleteReport.propTypes = {
   id: PropTypes.any,
   onClose: PropTypes.func.isRequired,
 };
 
-export default DeleteUser;
+export default DeleteReport;
