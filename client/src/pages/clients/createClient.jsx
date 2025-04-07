@@ -108,7 +108,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setFirstName(e.target.value)}
             />
             <FormInput
@@ -117,7 +117,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setlastName(e.target.value)}
             />
           </Flex>
@@ -128,7 +128,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setEmail(e.target.value)}
             />
             <FormInput
@@ -137,7 +137,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Flex>
@@ -164,7 +164,7 @@ const CreateClient = () => {
                 },
               ]}
               optionProps={{
-                background: '#0996A1',
+                background: '#3d3d3d',
                 color: '#ffffff',
               }}
               onChange={(e) => setGender(e.target.value)}
@@ -183,7 +183,7 @@ const CreateClient = () => {
                 value: item._id,
               }))}
               optionProps={{
-                background: '#0996A1',
+                background: '#3d3d3d',
                 color: '#ffffff',
               }}
               onChange={(e) => setTrainer(e.target.value)}
@@ -198,7 +198,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setHeight(e.target.value)}
             />
             <FormInput
@@ -207,7 +207,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setAge(e.target.value)}
             />
             <FormInput
@@ -216,7 +216,7 @@ const CreateClient = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setWeight(e.target.value)}
             />
           </Flex>

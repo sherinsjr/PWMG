@@ -59,13 +59,7 @@ const CreateUser = () => {
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
       <Heading>Create User</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-        p='10'
-      >
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem' p='10'>
         <Flex
           as={chakra.form}
           w='100%'
@@ -81,7 +75,7 @@ const CreateUser = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setFirstName(e.target.value)}
             />
             <FormInput
@@ -90,7 +84,7 @@ const CreateUser = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setlastName(e.target.value)}
             />
           </Flex>
@@ -101,7 +95,7 @@ const CreateUser = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setEmail(e.target.value)}
             />
             <FormInput
@@ -110,7 +104,7 @@ const CreateUser = () => {
               type='text'
               isRequired={true}
               w='90%'
-              labelColor='brand.white'
+              labelColor='black'
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Flex>
@@ -133,7 +127,7 @@ const CreateUser = () => {
                 },
               ]}
               optionProps={{
-                background: '#0996A1',
+                background: '#3d3d3d',
                 color: '#ffffff',
               }}
               onChange={(e) => setUserRole(e.target.value)}

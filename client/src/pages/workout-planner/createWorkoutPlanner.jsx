@@ -58,11 +58,11 @@ const CreateWorkoutPlanner = () => {
 
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>Create Workout Planner</Heading>
+      <Heading>Create Workout Plan</Heading>
       <Flex
         w='full'
         h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
+       bg='#D9D9D9'
         rounded='1rem'
         p='10'
       >
@@ -81,7 +81,7 @@ const CreateWorkoutPlanner = () => {
               id='planName'
               type='text'
               isRequired={true}
-              w='90%'
+              w='95%'
               labelColor='brand.black'
               onChange={(e) => setPlanName(e.target.value)}
             />
@@ -91,7 +91,7 @@ const CreateWorkoutPlanner = () => {
               validator={{
                 required: 'Choose a Client',
               }}
-              w='90%'
+              w='100%'
               options={clients.map((item) => ({
                 label: `${item.firstName} ${item.lastName}`,
                 value: item._id,
@@ -107,6 +107,8 @@ const CreateWorkoutPlanner = () => {
           </Flex>
           <Textarea
             placeholder='Description'
+            color='black'
+            border='2px solid #3d3d3d'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />

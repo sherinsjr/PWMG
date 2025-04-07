@@ -78,8 +78,8 @@ const UpdateClient = ({ onClose, userData }) => {
       gap='4'
       p='5'
     >
-      <Text color='brand.mainTeal' fontSize='1.5rem' fontWeight='semibold'>
-        Update User
+      <Text color='#3d3d3d' fontSize='1.5rem' fontWeight='semibold'>
+        Update Client
       </Text>
       <Flex
         as={chakra.form}
@@ -95,7 +95,7 @@ const UpdateClient = ({ onClose, userData }) => {
           isRequired={true}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          labelColor='brand.white'
+          labelColor='black'
         />
         <FormInput
           label='Last Name'
@@ -104,7 +104,7 @@ const UpdateClient = ({ onClose, userData }) => {
           isRequired={true}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          labelColor='brand.white'
+          labelColor='black'
         />
         <FormInput
           label='Phone Number'
@@ -113,7 +113,7 @@ const UpdateClient = ({ onClose, userData }) => {
           isRequired={true}
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
-          labelColor='brand.white'
+          labelColor='black'
         />
         <Flex w='full' justify='space-between'>
           <Button

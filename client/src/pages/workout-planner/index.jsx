@@ -50,14 +50,24 @@ const WorkoutPlansPage = () => {
 
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>Workout Planner</Heading>
+      <Heading>Workout Plans</Heading>
       <Flex
         w='full'
         h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
+        bg='#D9D9D9'
         rounded='1rem'
         p='10'
+        direction='column'
       >
+        <Button
+          size='sm'
+          mt='4'
+          w='9rem'
+          colorScheme='teal'
+          onClick={() => navigate(`/user/workout-plan/create`)}
+        >
+          Create New Plan
+        </Button>
         <Flex p='6' flexWrap='wrap'>
           <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap='6'>
             {plans.map((plan) => (
@@ -70,15 +80,17 @@ const WorkoutPlansPage = () => {
                 border='1px solid #ddd'
                 transition='all 0.2s'
                 _hover={{ shadow: 'xl' }}
+                h='15rem'
               >
                 <Heading size='md' mb='2'>
                   {plan.planName}
                 </Heading>
                 <Text fontSize='sm' color='gray.600'>
-                  <strong>Client:</strong> {plan?.assignedTo?.name || 'N/A'}
+                  <strong>Client:</strong> {plan?.assignedTo?.name || 'ROSHAN'}
                 </Text>
                 <Text fontSize='sm' color='gray.600'>
-                  <strong>Trainer:</strong> {plan?.assignedBy?.name || 'N/A'}
+                  <strong>Trainer:</strong>{' '}
+                  {plan?.assignedBy?.name || 'Trainer 1'}
                 </Text>
                 <Text fontSize='sm' color='gray.600'>
                   <strong>Duration:</strong> {plan.durationInWeeks} weeks

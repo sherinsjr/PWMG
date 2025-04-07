@@ -12,6 +12,8 @@ import ForearmImage from './svgs/forearm-image.svg';
 import LegsImage from './svgs/legs-image.svg';
 import ShoulderImage from './svgs/shoulder-image.svg';
 import TricepsImage from './svgs/triceps-image.svg';
+import ClientLogo from './svgs/clientLogo.svg';
+import Gymcart from './svgs/gymCart.svg';
 
 export {
   Logo,
@@ -28,4 +30,6 @@ export {
   LegsImage,
   ShoulderImage,
   TricepsImage,
+  ClientLogo,
+  Gymcart,
 };

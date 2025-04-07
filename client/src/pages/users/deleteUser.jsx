@@ -64,7 +64,7 @@ const DeleteUser = ({ onClose, id }) => {
       gap='2'
     >
       <Flex>
-        <Text fontSize={{ base: '1.2rem' }}>
+        <Text fontSize={{ base: '1.2rem' }} color='black'>
           Are you sure you want to delete?
         </Text>
       </Flex>

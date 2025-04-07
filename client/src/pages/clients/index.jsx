@@ -125,13 +125,7 @@ const ClientList = () => {
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
       <Heading>Client List</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-        p='10'
-      >
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem' p='10'>
         <Flex w='100%' h='100%'>
           {loading ? (
             <Flex w='100%' h='100%' alignItems='center' justify='center'>
@@ -147,7 +141,7 @@ const ClientList = () => {
             <TableComponent
               columns={columns}
               data={clients}
-              buttonName='Add User'
+              buttonName='Add Client'
               buttonLink='/user/clients/create'
               isButton={true}
               isPagination={true}

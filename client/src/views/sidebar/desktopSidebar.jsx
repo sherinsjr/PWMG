@@ -15,13 +15,16 @@ import { SimpleButton } from '../../components/buttons';
 import MainModal from '../../components/modal';
 import { useAuth } from '../../contexts/authContext';
 import { sidebarRoutes } from '../../routes';
-import { useUserData } from '../../contexts/userContext';
+import { getItemFromLocalStorage } from '../../utils/localStorage';
 
 function DesktopSidebar() {
   let location = useLocation();
   const auth = useAuth();
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { user } = useUserData();
+
+  const user = getItemFromLocalStorage('user');
+
+  console.log(user);
 
   const userName = `${user?.firstName} ${user?.lastName}`;
 
@@ -72,7 +75,8 @@ function DesktopSidebar() {
       w='250px'
       h='96%'
       borderRadius='20px'
-      bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
+      // bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
+      bg='#D9D9D9'
       color='brand.dark'
       justifyContent='center'
       display={{ base: 'none', lg: 'flex' }}
@@ -91,17 +95,17 @@ function DesktopSidebar() {
           fontSize='18px'
           textTransform='uppercase'
           fontWeight='bold'
-          color={'brand.dark'}
+          color='black'
         >
-          {userName}
+          Personal Trainer
         </Text>
         <Flex direction='column' mt='20px' alignItems={'flex-start'}>
           {sidebarRoutes.map((route, i) => (
             <Flex mb='20px' key={i}>
               <NavLink to={route.path}>
                 <SimpleButton
-                  color='brand.dark'
-                  bg='#E7E8E9'
+                  color='white'
+                  bg='#3d3d3d'
                   display='inline-flex'
                   fontWeight='medium'
                   justifyContent={{ base: 'center', md: 'flex-start' }}
@@ -127,7 +131,7 @@ function DesktopSidebar() {
           <SimpleButton
             as={Flex}
             variant='unstyled'
-            color='brand.dark'
+            color='black'
             position='fixed'
             bottom='12'
             onClick={() => {

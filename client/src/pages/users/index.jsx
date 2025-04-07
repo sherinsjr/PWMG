@@ -57,6 +57,10 @@ const UserList = () => {
         accessor: 'phoneNumber',
       },
       {
+        Header: 'Role',
+        accessor: 'role',
+      },
+      {
         Header: 'Actions',
         accessor: (cell) => (
           <Flex>
@@ -93,13 +97,7 @@ const UserList = () => {
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
       <Heading>User List</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-        p='10'
-      >
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem' p='10'>
         <Flex w='100%' h='100%'>
           {loading ? (
             <Flex w='100%' h='100%' alignItems='center' justify='center'>
@@ -123,14 +121,10 @@ const UserList = () => {
           )}
         </Flex>
       </Flex>
-      <MainModal isOpen={isOpen} onClose={onClose}>
+      <MainModal isOpen={isOpen} onClose={onClose} bgColor='#D9D9D9'>
         <DeleteUser onClose={onClose} id={deleteId} />
       </MainModal>
-      <MainModal
-        isOpen={isModalOpen}
-        onClose={onModalClose}
-        bgColor='brand.dashboardBg'
-      >
+      <MainModal isOpen={isModalOpen} onClose={onModalClose} bgColor='#D9D9D9'>
         <UpdateUser onClose={onModalClose} userData={selectedUser} />
       </MainModal>
     </Flex>

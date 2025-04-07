@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import { FiSettings, FiUsers } from 'react-icons/fi';
 import { RxDashboard } from 'react-icons/rx';
 import { TbReportAnalytics } from 'react-icons/tb';
-import { CiCalendarDate } from "react-icons/ci";
+import { CiCalendarDate } from 'react-icons/ci';
 import { Navigate } from 'react-router-dom';
 import { AuthLayout, DesktopLayout } from '../views/layouts';
 import { Suspense } from 'react';

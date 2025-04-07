@@ -10,15 +10,15 @@ const SelectInput = ({
 }) => {
   return (
     <FormControl isRequired={isRequired}>
-      <FormLabel htmlFor='input label' color='brand.black' {...labelProps}>
+      <FormLabel htmlFor='input label' color='black' {...labelProps}>
         {children}
       </FormLabel>
       <Select
         as='select'
-        color='brand.white'
+        labelColor='black'
         {...rest}
         border='2px solid'
-        borderColor='brand.btnBg'
+        borderColor='#3d3d3d'
         borderRadius='0.8rem'
       >
         <option value='' style={optionProps}>

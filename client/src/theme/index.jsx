@@ -6,7 +6,7 @@ const theme = extendTheme({
       white: '#ffffff',
       dark: '#0000000',
       btnBg: '#2FB797',
-      cardBg: '#1492B5',
+      cardBg: '#1492B580',
       mainBg:
         'linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)',
     },

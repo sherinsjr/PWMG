@@ -7,7 +7,8 @@ const AuthLayout = () => {
       <Flex
         h='full'
         w='full'
-        bgGradient='linear-gradient(180deg, #FFFFFF 20.09%, rgba(124, 137, 141, 0.8) 77.5%)'
+        // bgGradient='linear-gradient(180deg, #FFFFFF 20.09%, rgba(124, 137, 141, 0.8) 77.5%)'
+        bg='#A3A7F3'
       >
         <Outlet />
       </Flex>

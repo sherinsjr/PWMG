@@ -64,7 +64,7 @@ const Report = () => {
             <Link
               href={downloadUrl}
               isExternal
-              color='blue.600'
+              color='white'
               fontWeight='medium'
             >
               Download
@@ -108,14 +108,8 @@ const Report = () => {
   );
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>User List</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-        p='10'
-      >
+      <Heading>Reports</Heading>
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem' p='10'>
         <Flex w='100%' h='100%'>
           {loading ? (
             <Flex w='100%' h='100%' alignItems='center' justify='center'>
@@ -131,7 +125,7 @@ const Report = () => {
             <TableComponent
               columns={columns}
               data={reports}
-              buttonName='Add User'
+              buttonName='Add Report'
               buttonLink='/user/report/create'
               isButton={true}
               isPagination={true}

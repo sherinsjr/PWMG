@@ -60,16 +60,17 @@ const GlobalSearch = ({
       w={{ base: '10rem', md: '16rem', lg: '20rem' }}
       h={{ base: '2.1875rem', lg: '2.4rem' }}
     >
-      <InputGroup color='brand.btnBg'>
+      <InputGroup color='#3d3d3d'>
         <InputLeftElement ml={1} height='full' size='1.25rem'>
           <AiOutlineSearch />
         </InputLeftElement>
         <Input
           maxHeight={{ base: '2rem', lg: '2.2rem' }}
           placeholder='Search...'
-          color='brand.white'
+          _placeholder={{ opacity: 0.9, color: 'black' }}
+          color='black'
           border='2px solid'
-          borderColor='brand.btnBg'
+          borderColor='#3d3d3d'
           bg='transparent'
           value={value || ''}
           onChange={handleInputChange}
@@ -216,9 +217,9 @@ const TableComponent = ({
               variant='simple'
               {...getTableProps()}
               size='sm'
-              border='2px solid'
-              borderColor='brand.mainTeal'
-              borderRadius='2rem'
+              // border='2px solid'
+              bg='#3d3d3d80'
+              borderRadius='1rem'
             >
               <Thead>
                 {headerGroups.map((group, index) => (
@@ -292,7 +293,7 @@ const TableComponent = ({
                   >
                     <Button
                       size='sm'
-                      bg='brand.mainTeal'
+                      bg='#3d3d3d'
                       color='brand.white'
                       fontWeight='extrabold'
                       w={{ base: '4rem' }}
@@ -303,7 +304,7 @@ const TableComponent = ({
                     </Button>
                     <Button
                       size='sm'
-                      bg='brand.mainTeal'
+                      bg='#3d3d3d'
                       color='brand.white'
                       fontWeight='extrabold'
                       w={{ base: '3rem' }}
@@ -314,7 +315,7 @@ const TableComponent = ({
                     </Button>
                     <Button
                       size='sm'
-                      bg='brand.mainTeal'
+                      bg='#3d3d3d'
                       color='brand.white'
                       fontWeight='extrabold'
                       w={{ base: '3rem' }}
@@ -325,7 +326,7 @@ const TableComponent = ({
                     </Button>
                     <Button
                       size='sm'
-                      bg='brand.mainTeal'
+                      bg='#3d3d3d'
                       color='brand.white'
                       fontWeight='extrabold'
                       w={{ base: '4rem' }}

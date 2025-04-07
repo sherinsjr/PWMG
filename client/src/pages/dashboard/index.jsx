@@ -1,5 +1,10 @@
 import { Flex, Heading } from '@chakra-ui/react';
-import { Challenges, PlannerImage, WorkoutLibrary } from '../../assets';
+import {
+  ClientLogo,
+  PlannerImage,
+  WorkoutLibrary,
+  Gymcart,
+} from '../../assets';
 import { SimpleCard } from '../../components/cards';
 
 const Dashboard = () => {
@@ -8,7 +13,7 @@ const Dashboard = () => {
       title: 'Planner',
       image: PlannerImage,
       alt: 'Planner image',
-      link: '/user/planner',
+      link: '/user/workout-plan',
     },
     {
       title: 'Workout Library',
@@ -17,21 +22,22 @@ const Dashboard = () => {
       link: '/user/workoutlibrary',
     },
     {
-      title: 'Challenges',
-      image: Challenges,
-      alt: 'Challenges image',
-      link: '/user/challenges',
+      title: 'Clients',
+      image: ClientLogo,
+      alt: 'Workout image',
+      link: '/user/clients',
+    },
+    {
+      title: 'Gym Cart',
+      image: Gymcart,
+      alt: 'Workout image',
+      link: '/user/products',
     },
   ];
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
       <Heading>Dashboard</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-      >
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem'>
         <Flex w='full' h='full' gap='8' alignItems='center' justify='center'>
           {cardData?.map((item, i) => (
             <SimpleCard

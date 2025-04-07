@@ -6,8 +6,8 @@ const DateInput = ({ label, id, isRequired, labelColor, ...rest }) => {
       <Text color={labelColor}>{label}</Text>
       <Input
         border='2px solid'
-        borderColor='brand.btnBg'
-        color='brand.white'
+        borderColor='#3d3d3d'
+        color='black'
         borderRadius='0.8rem'
         type='date'
         id={id}

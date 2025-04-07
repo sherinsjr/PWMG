@@ -239,17 +239,11 @@ const UpdateClientDetails = () => {
 
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>Update Client</Heading>
-      <Flex
-        w='full'
-        h='full'
-        bgGradient='linear-gradient(180deg, #D4D7D8 20%, rgba(124, 137, 141, 0.8) 77%)'
-        rounded='1rem'
-        p='10'
-      >
+      <Heading>Update Client Details</Heading>
+      <Flex w='full' h='full' bg='#D9D9D9' rounded='1rem' p='10'>
         <Flex w='100%' h='100%' flexDirection='column' gap='5'>
           {/* Fee Section */}
-          <Text fontWeight='semibold' fontSize='1.2rem'>
+          <Text fontWeight='semibold' fontSize='1.2rem' color='#3d3d3d'>
             Fee Details
           </Text>
           <Flex
@@ -263,18 +257,21 @@ const UpdateClientDetails = () => {
                 id='planName'
                 value={planName}
                 onChange={(e) => setPlanName(e.target.value)}
+                labelColor='black'
               />
               <FormInput
                 label='Plan Amount'
                 id='planAmount'
                 value={planAmount}
                 onChange={(e) => setPlanAmount(e.target.value)}
+                labelColor='black'
               />
               <DateInput
                 label='Payment Date'
                 id='paymentDate'
                 value={paymentDate}
                 onChange={(e) => setPaymentDate(e.target.value)}
+                labelColor='black'
               />
             </Flex>
             <Flex gap='4' mt='4' alignItems='center'>
@@ -302,14 +299,13 @@ const UpdateClientDetails = () => {
           </Flex>
 
           {/* Trainer Section */}
-          <Text fontWeight='semibold' fontSize='1.2rem'>
+          <Text fontWeight='semibold' fontSize='1.2rem' color='#3d3d3d'>
             Trainer Details
           </Text>
           <Flex gap='4' alignItems='center'>
             <SelectInput
               id='trainerId'
               name='trainerId'
-              //   value={trainerId}
               onChange={(e) => setTrainerId(e.target.value)}
               options={trainers.map((t) => ({
                 label: `${t.firstName} ${t.lastName}`,
@@ -334,7 +330,7 @@ const UpdateClientDetails = () => {
           </Flex>
 
           {/* Workout Plan Section */}
-          <Text fontWeight='semibold' fontSize='1.2rem'>
+          <Text fontWeight='semibold' fontSize='1.2rem' color='#3d3d3d'>
             Workout Plan Details
           </Text>
           <Flex gap='4'>

@@ -83,8 +83,8 @@ const Login = () => {
         w='25rem'
         h='30rem'
         bg='#D9D9D9'
-        border='0.25rem solid'
-        borderColor='#0D343C'
+        // border='0.25rem solid'
+        // borderColor='#0D343C'
         rounded='1rem'
       >
         <Flex
@@ -102,9 +102,9 @@ const Login = () => {
           <LoginInput type='email' placeholder='Email Id' name='email' />
           <PasswordInput placeholder='Password' name='password' />
           <SimpleButton
-            bg='brand.btnBg'
-            w='8rem'
-            color='white'
+            bg='#5FF3F0'
+            w='full'
+            color='black'
             type='submit'
             isLoading={isLoading}
             loadingText='Loggin In'
@@ -112,10 +112,10 @@ const Login = () => {
           >
             Login
           </SimpleButton>
-          <Flex gap='1' color='#0D343C'>
+          {/* <Flex gap='1' color='#0D343C'>
             <Text>Don&apos;t have an account?</Text>
             <Link to='/signup'>SIGN UP</Link>
-          </Flex>
+          </Flex> */}
           <Button
             variant='unstyled'
             onClick={onOpen}

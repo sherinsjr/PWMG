@@ -7,7 +7,7 @@ const SimpleCard = ({ title, image, alt, link }) => {
     <Flex
       as={Link}
       to={link}
-      w='18rem'
+      w='16rem'
       h='23rem'
       direction='column'
       alignItems='center'
@@ -17,7 +17,7 @@ const SimpleCard = ({ title, image, alt, link }) => {
       boxShadow='2xl'
     >
       <Flex>
-        <Image src={image} alt={alt} boxSize='15rem' />
+        <Image src={image} alt={alt} boxSize='12rem' />
       </Flex>
       <Text
         fontSize={{ base: '1.5rem' }}

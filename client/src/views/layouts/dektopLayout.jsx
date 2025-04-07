@@ -9,7 +9,8 @@ const DesktopLayout = () => {
     <Flex
       gap='4'
       overflow='auto'
-      bgGradient='linear-gradient(180deg, #FFFFFF 20.09%, rgba(124, 137, 141, 0.8) 77.5%)'
+      // bgGradient='linear-gradient(180deg, #FFFFFF 20.09%, rgba(124, 137, 141, 0.8) 77.5%)'
+      bg='#A3A7F3'
       w='100vw'
       h='100vh'
     >

@@ -58,7 +58,7 @@ const WorkoutPlanViewPage = () => {
 
   return (
     <Flex h='96%' w='75rem' direction='column' gap='5'>
-      <Heading>Workout Planner</Heading>
+      <Heading>Workout Plan</Heading>
       <Flex
         w='full'
         h='full'
@@ -75,10 +75,10 @@ const WorkoutPlanViewPage = () => {
             <strong>Duration:</strong> {plan.durationInWeeks} weeks
           </Text>
           <Text fontSize='md'>
-            <strong>Assigned Client:</strong> {plan?.assignedTo?.name || 'N/A'}
+            <strong>Assigned Client:</strong> {plan?.assignedTo?.name || 'ROSHAN'}
           </Text>
           <Text fontSize='md' mb='6'>
-            <strong>Assigned Trainer:</strong> {plan?.assignedBy?.name || 'N/A'}
+            <strong>Assigned Trainer:</strong> {plan?.assignedBy?.name || 'Trainer 1'}
           </Text>
 
           <Divider mb='6' />
